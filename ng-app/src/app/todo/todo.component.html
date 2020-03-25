@@ -1,0 +1,31 @@
+<form #frm="ngForm" class="form-inline" (ngSubmit)="addItem(frm)">
+    <div class="form-group">
+        <input
+        type="text"
+        class='form-control'
+        name="itemName"
+        ngModel>
+    </div>
+    <button type="submit" name="button" class="btn btn-success">Add</button>
+
+</form>
+
+<hr>
+<div *ngFor="let item of itemList" class="">
+    <div class="row">
+        <div class="col-md-2">
+            <input
+            type="checkbox"
+            [checked]="item.itemDone"
+            (click)="updateCheckBox(item)"
+            >
+        </div>
+        <div class="col-md-6">
+            {{item.itemName}}
+        </div>
+        <div class="col-md-4">
+            <button (click)="deleteItem(item._id)" type="button" name="button" class="btn btn-danger">X</button>
+        </div>
+        
+    </div>
+</div>
