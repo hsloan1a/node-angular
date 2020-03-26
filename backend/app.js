@@ -9,7 +9,7 @@ const route = require('./route')
 
 const PORT = 3000;
 
-mongoose.connect('mongodb://localhost:27017/todolist', {
+mongoose.connect('mongodb://mongo:27017/todolist', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false

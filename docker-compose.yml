@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  backend:
+    container_name: backend-node-todo
+    build: 
+      context: ./backend/
+      dockerfile: Dockerfile
+    command: npm start
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./backend:/backend
+    networks:
+      - your-network
+    links:
+      - mongo
+  client:
+    container_name: angular-client
+    build:
+      context: ./ng-app/
+      dockerfile: Dockerfile
+    command: ng serve --host 0.0.0.0
+    volumes:
+      - ./ng-app:/ng-app
+    ports:
+      - "4201:4200"
+    networks:
+      - your-network
+    links:
+      - backend
+  mongo:
+    container_name: mongo-todo
+    image: mongo
+    restart: always
+    ports:
+      - "27018:27017"
+    networks:
+      - your-network
+networks:
+   your-network:
+    name: to-do

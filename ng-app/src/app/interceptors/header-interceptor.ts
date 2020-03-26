@@ -8,8 +8,7 @@ export class HeaderInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler) {
         const newRequest = request.clone( {
             setHeaders: {
-              'Content-Type':  'application/json',
-              'Access-Control-Allow-Origin': 'http://localhost:3000'
+              'Content-Type':  'application/json'
             }
         });
         return next.handle(newRequest);
